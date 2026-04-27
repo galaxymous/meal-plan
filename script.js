@@ -97,7 +97,10 @@ function renderMeal(label, meal, dateIso, slot) {
       <span class="meal-tag">${label}</span>
       ${isLibre ? "" : `<button class="meal-ideas" data-ideas="${meal.type}" aria-label="Voir des idées de plats">Idées</button>`}
     </div>
-    ${isLibre ? "" : `<div class="meal-tile" style="background: ${(TYPE_VISUAL[meal.type] || {}).gradient || "var(--cream-2)"}"><span class="meal-tile-emoji">${TYPE_EMOJI[meal.type] || "🍽"}</span></div>`}
+    ${((v) => v.image
+      ? `<img class="meal-tile meal-photo" loading="lazy" alt="" src="${v.image}" />`
+      : `<div class="meal-tile" style="background: ${v.gradient || "var(--cream-2)"}"><span class="meal-tile-emoji">${TYPE_EMOJI[meal.type] || "🍽"}</span></div>`
+    )(TYPE_VISUAL[meal.type] || {})}
     <ul class="meal-items"></ul>
   `;
   if (isDone) div.classList.add("is-done");

@@ -206,17 +206,16 @@ const SAUCES = {
   },
 };
 
-// Visual identity per meal type: gradient + big emoji (no external photos —
-// nothing can mismatch). Each type gets its own colour story.
+// Visual identity per meal type: photo (in /images) + fallback gradient.
 const TYPE_VISUAL = {
-  "feculents-proteine": { gradient: "linear-gradient(135deg, #f9d976 0%, #f39c6b 100%)" },
-  "proteine-legumes":   { gradient: "linear-gradient(135deg, #a8e063 0%, #56ab2f 100%)" },
-  "bouillon":           { gradient: "linear-gradient(135deg, #ffd29c 0%, #d96941 100%)" },
-  "fruit":              { gradient: "linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)" },
-  "feculents":          { gradient: "linear-gradient(135deg, #fceabb 0%, #f8b500 100%)" },
-  "crudites":           { gradient: "linear-gradient(135deg, #c1efb1 0%, #5fa371 100%)" },
-  "fromage":            { gradient: "linear-gradient(135deg, #fff1a8 0%, #f0c060 100%)" },
-  "libre":              { gradient: "linear-gradient(135deg, #fceabb 0%, #fbd786 100%)" },
+  "feculents-proteine": { image: "images/feculents-proteine.jpg", gradient: "linear-gradient(135deg, #f9d976 0%, #f39c6b 100%)" },
+  "proteine-legumes":   { image: "images/proteine-legumes.jpg",   gradient: "linear-gradient(135deg, #a8e063 0%, #56ab2f 100%)" },
+  "bouillon":           { image: "images/bouillon.jpg",           gradient: "linear-gradient(135deg, #ffd29c 0%, #d96941 100%)" },
+  "fruit":              { image: "images/fruit.jpg",              gradient: "linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)" },
+  "feculents":          { image: "images/feculents.jpg",          gradient: "linear-gradient(135deg, #fceabb 0%, #f8b500 100%)" },
+  "crudites":           { image: "images/crudites.jpg",           gradient: "linear-gradient(135deg, #c1efb1 0%, #5fa371 100%)" },
+  "fromage":            { image: "images/fromage.jpg",             gradient: "linear-gradient(135deg, #fff1a8 0%, #f0c060 100%)" },
+  "libre":              { image: "images/libre.jpg",              gradient: "linear-gradient(135deg, #fceabb 0%, #fbd786 100%)" },
 };
 
 // 3-5 concrete dish ideas per meal type — all compatible with the nutritionist's
