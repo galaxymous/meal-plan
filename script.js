@@ -97,7 +97,7 @@ function renderMeal(label, meal, dateIso, slot) {
       <span class="meal-tag">${label}</span>
       ${isLibre ? "" : `<button class="meal-ideas" data-ideas="${meal.type}" aria-label="Voir des idées de plats">Idées</button>`}
     </div>
-    ${isLibre ? "" : `<img class="meal-img" loading="lazy" alt="" src="${TYPE_IMAGES[meal.type] || ""}" />`}
+    ${isLibre ? "" : `<div class="meal-tile" style="background: ${(TYPE_VISUAL[meal.type] || {}).gradient || "var(--cream-2)"}"><span class="meal-tile-emoji">${TYPE_EMOJI[meal.type] || "🍽"}</span></div>`}
     <ul class="meal-items"></ul>
   `;
   if (isDone) div.classList.add("is-done");
@@ -255,9 +255,9 @@ function applyTheme(theme) {
   if (btn) btn.textContent = theme === "dark" ? "☀️" : "🌙";
 }
 function setupTheme() {
+  // Default to light. Only switch to dark if the user explicitly chose it before.
   const saved = localStorage.getItem(THEME_KEY);
-  const prefers = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme(saved || (prefers ? "dark" : "light"));
+  applyTheme(saved === "dark" ? "dark" : "light");
   $("#theme-toggle").addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     localStorage.setItem(THEME_KEY, next);

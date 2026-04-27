@@ -206,16 +206,17 @@ const SAUCES = {
   },
 };
 
-// Image per meal type — Unsplash hotlinks (free, attribution-friendly).
-const TYPE_IMAGES = {
-  "feculents-proteine": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=70",
-  "proteine-legumes":   "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=70",
-  "bouillon":           "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=70",
-  "fruit":              "https://images.unsplash.com/photo-1490474504059-bf2db5ab2348?w=400&q=70",
-  "feculents":          "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&q=70",
-  "crudites":           "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=70",
-  "fromage":            "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400&q=70",
-  "libre":              "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=70",
+// Visual identity per meal type: gradient + big emoji (no external photos —
+// nothing can mismatch). Each type gets its own colour story.
+const TYPE_VISUAL = {
+  "feculents-proteine": { gradient: "linear-gradient(135deg, #f9d976 0%, #f39c6b 100%)" },
+  "proteine-legumes":   { gradient: "linear-gradient(135deg, #a8e063 0%, #56ab2f 100%)" },
+  "bouillon":           { gradient: "linear-gradient(135deg, #ffd29c 0%, #d96941 100%)" },
+  "fruit":              { gradient: "linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)" },
+  "feculents":          { gradient: "linear-gradient(135deg, #fceabb 0%, #f8b500 100%)" },
+  "crudites":           { gradient: "linear-gradient(135deg, #c1efb1 0%, #5fa371 100%)" },
+  "fromage":            { gradient: "linear-gradient(135deg, #fff1a8 0%, #f0c060 100%)" },
+  "libre":              { gradient: "linear-gradient(135deg, #fceabb 0%, #fbd786 100%)" },
 };
 
 // 3-5 concrete dish ideas per meal type — all compatible with the nutritionist's

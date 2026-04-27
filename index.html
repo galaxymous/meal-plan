@@ -14,12 +14,7 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <p class="kicker">Plan repas · 5 semaines</p>
       <h1>Doucement, <em>mais sûrement</em>.</h1>
-      <p class="lede">
-        Un plan en cinq semaines, à lire le matin, à suivre le jour même.
-        Cliquez sur une semaine, ou laissez la page vous guider — elle ouvre celle d'aujourd'hui.
-      </p>
       <div class="hero-decor" aria-hidden="true">
         <span class="decor decor-lemon">🍋</span>
         <span class="decor decor-tomato">🍅</span>
@@ -42,17 +37,22 @@
   </nav>
 
   <main>
-    <section id="rules" class="rules">
-      <h2>Les règles du jeu</h2>
-      <p class="rules-intro">À garder en tête avant chaque repas. Les sauces sont les seules matières grasses autorisées les deux premières semaines (hors jours libres).</p>
-      <div class="rules-grid" id="rules-grid"><!-- injected --></div>
-      <div class="sauces">
-        <article class="sauce" id="sauce-allegee"><!-- injected --></article>
-        <article class="sauce" id="sauce-dragon"><!-- injected --></article>
-      </div>
-    </section>
-
     <section id="weeks" class="weeks"><!-- weeks injected here --></section>
+
+    <details id="rules" class="rules">
+      <summary>
+        <span class="rules-summary-title">Les règles du jeu</span>
+        <span class="rules-summary-hint">cliquer pour ouvrir</span>
+      </summary>
+      <div class="rules-body">
+        <p class="rules-intro">À garder en tête avant chaque repas. Les sauces ci-dessous sont les seules matières grasses autorisées les deux premières semaines (hors jours libres).</p>
+        <div class="rules-grid" id="rules-grid"><!-- injected --></div>
+        <div class="sauces">
+          <article class="sauce" id="sauce-allegee"><!-- injected --></article>
+          <article class="sauce" id="sauce-dragon"><!-- injected --></article>
+        </div>
+      </div>
+    </details>
   </main>
 
   <!-- Sauce modal -->
@@ -66,8 +66,8 @@
   </div>
 
   <footer>
-    <p>Pour imprimer une semaine&nbsp;: ouvrez la page de la semaine et utilisez <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd>.</p>
-    <p class="footnote">Fait avec ❤️ pour ne plus avoir à déplier le PDF.</p>
+    <p>Coche les repas une fois pris. Imprime une semaine avec <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd>.</p>
+    <p class="footnote">Les jours marqués <strong>Voyage</strong> sont mis de côté&nbsp;: tu n'es pas chez toi, le plan reprend lundi.</p>
   </footer>
 
   <script src="data/menu.js"></script>
