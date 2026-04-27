@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon plan repas · 5 semaines</title>
+  <meta name="description" content="Plan repas sur 5 semaines, mis en page pour la lecture quotidienne." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E🍋%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="kicker">Plan repas · 5 semaines</p>
+      <h1>Doucement, <em>mais sûrement</em>.</h1>
+      <p class="lede">
+        Un plan en cinq semaines, à lire le matin, à suivre le jour même.
+        Cliquez sur une semaine, ou laissez la page vous guider — elle ouvre celle d'aujourd'hui.
+      </p>
+      <div class="hero-decor" aria-hidden="true">
+        <span class="decor decor-lemon">🍋</span>
+        <span class="decor decor-tomato">🍅</span>
+        <span class="decor decor-leaf">🌿</span>
+        <span class="decor decor-fish">🐟</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="weeknav" aria-label="Semaines">
+    <div class="weeknav-inner">
+      <button class="weektab" data-week="1">Semaine 1</button>
+      <button class="weektab" data-week="2">Semaine 2</button>
+      <button class="weektab" data-week="3">Semaine 3</button>
+      <button class="weektab" data-week="4">Semaine 4</button>
+      <button class="weektab" data-week="5">Semaine 5</button>
+      <button class="weektab weektab-rules" data-target="rules">Les règles</button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Basculer thème clair/sombre" title="Thème clair / sombre">🌙</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="rules" class="rules">
+      <h2>Les règles du jeu</h2>
+      <p class="rules-intro">À garder en tête avant chaque repas. Les sauces sont les seules matières grasses autorisées les deux premières semaines (hors jours libres).</p>
+      <div class="rules-grid" id="rules-grid"><!-- injected --></div>
+      <div class="sauces">
+        <article class="sauce" id="sauce-allegee"><!-- injected --></article>
+        <article class="sauce" id="sauce-dragon"><!-- injected --></article>
+      </div>
+    </section>
+
+    <section id="weeks" class="weeks"><!-- weeks injected here --></section>
+  </main>
+
+  <!-- Sauce modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" data-close aria-label="Fermer">×</button>
+      <h3 id="modal-title"></h3>
+      <ul id="modal-body"></ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>Pour imprimer une semaine&nbsp;: ouvrez la page de la semaine et utilisez <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>P</kbd>.</p>
+    <p class="footnote">Fait avec ❤️ pour ne plus avoir à déplier le PDF.</p>
+  </footer>
+
+  <script src="data/menu.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
