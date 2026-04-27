@@ -162,7 +162,7 @@ const MENU = {
 const RULES = {
   proteinesMaigres: {
     title: "Protéines maigres",
-    body: "Viande maigre (filet de poulet, jambon de volaille, steak 5%), poisson (poisson blanc, thon, darne de saumon en papillote), œuf, skyr, fromage blanc 0% (si aromatisé, moins de 12 g de sucres / 100 g).",
+    body: "Viande maigre (filet de poulet, escalope de dinde, steak 5%), poisson (poisson blanc, thon, darne de saumon en papillote), œuf, skyr, fromage blanc 0% (si aromatisé, moins de 12 g de sucres / 100 g).",
   },
   feculents: {
     title: "Féculents au choix",
@@ -212,7 +212,7 @@ const SAUCES = {
 const SHOPPING = {
   weeks: {
     1: [
-      { title: "Protéines",  items: ["Filets de poulet", "Œufs (boîte de 12)", "Cabillaud frais ou surgelé", "Thon au naturel (2 boîtes)", "Jambon de volaille"] },
+      { title: "Protéines",  items: ["Filets de poulet", "Œufs (boîte de 12)", "Cabillaud frais ou surgelé", "Thon au naturel (2 boîtes)", "Tofu ferme nature"] },
       { title: "Légumes",    items: ["Courgettes ×3", "Haricots verts (500 g)", "Tomates grappes", "Mâche ou laitue", "Carottes (1 botte)", "Concombre"] },
       { title: "Féculents",  items: ["Riz basmati", "Quinoa", "Vermicelles"] },
       { title: "Fruits",     items: ["Kiwis ×6", "Fraises (250 g)", "Oranges ×4"] },
@@ -233,7 +233,7 @@ const SHOPPING = {
       { title: "Laitiers",   items: ["Skyr nature", "Mozzarella di bufala", "Feta"] },
     ],
     4: [
-      { title: "Protéines",  items: ["Filets de poulet", "Crevettes", "Œufs ×12", "Jambon de volaille", "Darne de saumon"] },
+      { title: "Protéines",  items: ["Filets de poulet", "Crevettes", "Œufs ×12", "Escalopes de dinde", "Darne de saumon"] },
       { title: "Légumes",    items: ["Tomates grappes (semaine spéciale tomate-mozza)", "Concombre", "Aubergines ×2", "Courgettes ×3", "Poivrons jaunes"] },
       { title: "Féculents",  items: ["Riz basmati", "Pâtes"] },
       { title: "Fruits",     items: ["Pommes ×4", "Raisin", "Kiwis ×4"] },
