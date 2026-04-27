@@ -80,26 +80,21 @@ function renderRules() {
   fillSauce($("#sauce-dragon"), SAUCES.dragon, "dragon");
 }
 
-function renderShopping() {
+let SHOP_VIEW = "1"; // current tab key: "1".."5" or "pantry"
+
+function renderShopCategories(categories, scope) {
   const grid = $("#shopping-grid");
-  if (!grid) return;
   grid.innerHTML = "";
-  SHOPPING.forEach((cat, ci) => {
+  categories.forEach((cat, ci) => {
     const card = document.createElement("article");
     card.className = "shop-cat";
     const title = document.createElement("h4");
     title.textContent = cat.title;
     card.appendChild(title);
-    if (cat.note) {
-      const note = document.createElement("p");
-      note.className = "shop-note";
-      note.textContent = cat.note;
-      card.appendChild(note);
-    }
     const ul = document.createElement("ul");
     ul.className = "shop-list";
     cat.items.forEach((item, ii) => {
-      const key = `shop:${ci}:${ii}`;
+      const key = `shop:${scope}:${ci}:${ii}`;
       const checked = localStorage.getItem(key) === "1";
       const li = document.createElement("li");
       li.innerHTML = `
@@ -114,6 +109,39 @@ function renderShopping() {
     card.appendChild(ul);
     grid.appendChild(card);
   });
+}
+
+function setShopView(view) {
+  SHOP_VIEW = view;
+  $$("#shop-tabs button").forEach(b => b.classList.toggle("is-active", b.dataset.shopview === view));
+  if (view === "pantry") renderShopCategories(SHOPPING.pantry, "pantry");
+  else renderShopCategories(SHOPPING.weeks[view], `w${view}`);
+}
+
+function renderShopping() {
+  const tabs = $("#shop-tabs");
+  if (!tabs) return;
+  tabs.innerHTML = "";
+  for (let w = 1; w <= 5; w++) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.dataset.shopview = String(w);
+    b.textContent = `Semaine ${w}`;
+    tabs.appendChild(b);
+  }
+  const pantry = document.createElement("button");
+  pantry.type = "button";
+  pantry.dataset.shopview = "pantry";
+  pantry.textContent = "Garde-manger";
+  pantry.classList.add("is-pantry");
+  tabs.appendChild(pantry);
+
+  tabs.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-shopview]");
+    if (btn) setShopView(btn.dataset.shopview);
+  });
+
+  setShopView(String(pickInitialWeek()));
 }
 
 function renderMeal(label, meal, dateIso, slot) {
@@ -302,8 +330,10 @@ function setupChecks() {
 
   const reset = $("#shopping-reset");
   if (reset) reset.addEventListener("click", () => {
+    const scope = SHOP_VIEW === "pantry" ? "pantry" : `w${SHOP_VIEW}`;
+    const prefix = `shop:${scope}:`;
     Object.keys(localStorage)
-      .filter(k => k.startsWith("shop:"))
+      .filter(k => k.startsWith(prefix))
       .forEach(k => localStorage.removeItem(k));
     $$("#shopping-grid input[type=checkbox]").forEach(cb => {
       cb.checked = false;

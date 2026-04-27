@@ -206,116 +206,54 @@ const SAUCES = {
   },
 };
 
-// Liste de courses — pensée anti-ballonnement.
-// Évite : brocolis, choux, chou-fleur, oignons crus, légumineuses en grande quantité,
-// poireaux crus, asperges, artichauts. Pas de banane (selon le menu).
-const SHOPPING = [
-  {
-    title: "Protéines maigres",
-    note: "Varie chaque semaine pour ne pas se lasser.",
-    items: [
-      "Filets de poulet",
-      "Escalopes de dinde",
-      "Jambon de volaille (tranches)",
-      "Steak haché 5 % MG",
-      "Œufs (boîte de 12)",
-      "Cabillaud / lieu noir / colin (frais ou surgelé)",
-      "Darnes de saumon",
-      "Thon au naturel (boîtes)",
-      "Crevettes décortiquées",
-      "Tofu nature ferme",
+// Liste de courses : une sélection par semaine, plus une liste "garde-manger"
+// (épicerie sèche) à compléter quand c'est vide. Les protéines et légumes
+// tournent d'une semaine à l'autre pour varier les plaisirs.
+const SHOPPING = {
+  weeks: {
+    1: [
+      { title: "Protéines",  items: ["Filets de poulet", "Œufs (boîte de 12)", "Cabillaud frais ou surgelé", "Thon au naturel (2 boîtes)", "Jambon de volaille"] },
+      { title: "Légumes",    items: ["Courgettes ×3", "Haricots verts (500 g)", "Tomates grappes", "Mâche ou laitue", "Carottes (1 botte)", "Concombre"] },
+      { title: "Féculents",  items: ["Riz basmati", "Quinoa", "Vermicelles"] },
+      { title: "Fruits",     items: ["Kiwis ×6", "Fraises (250 g)", "Oranges ×4"] },
+      { title: "Laitiers",   items: ["Skyr nature (500 g)", "Fromage blanc 0 % (500 g)", "Yaourts nature ×4"] },
+    ],
+    2: [
+      { title: "Protéines",  items: ["Escalopes de dinde", "Darne de saumon", "Crevettes cuites (200 g)", "Œufs ×6", "Steak haché 5 % MG ×2"] },
+      { title: "Légumes",    items: ["Courgettes ×3", "Aubergines ×2", "Poivrons rouges ×2", "Concombre", "Épinards frais (300 g)", "Champignons de Paris"] },
+      { title: "Féculents",  items: ["Pâtes semi-complètes", "Riz basmati"] },
+      { title: "Fruits",     items: ["Framboises ou myrtilles", "Nectarines ×4", "Citron"] },
+      { title: "Laitiers",   items: ["Skyr nature", "Yaourt grec 0 %", "Fromage blanc 0 %"] },
+    ],
+    3: [
+      { title: "Protéines",  items: ["Filets de poulet", "Lieu noir ou colin", "Thon au naturel", "Œufs ×6", "Tofu ferme nature"] },
+      { title: "Légumes",    items: ["Courgettes ×3", "Carottes", "Radis (1 botte)", "Endives ×4", "Tomates cerises", "Roquette ou mâche"] },
+      { title: "Féculents",  items: ["Quinoa", "Patate douce ×2"] },
+      { title: "Fruits",     items: ["Ananas frais", "Mandarines", "Pêches ×4"] },
+      { title: "Laitiers",   items: ["Skyr nature", "Mozzarella di bufala", "Feta"] },
+    ],
+    4: [
+      { title: "Protéines",  items: ["Filets de poulet", "Crevettes", "Œufs ×12", "Jambon de volaille", "Darne de saumon"] },
+      { title: "Légumes",    items: ["Tomates grappes (semaine spéciale tomate-mozza)", "Concombre", "Aubergines ×2", "Courgettes ×3", "Poivrons jaunes"] },
+      { title: "Féculents",  items: ["Riz basmati", "Pâtes"] },
+      { title: "Fruits",     items: ["Pommes ×4", "Raisin", "Kiwis ×4"] },
+      { title: "Laitiers",   items: ["Mozzarella di bufala (×2)", "Feta", "Fromage blanc 0 %", "Yaourts nature"] },
+      { title: "Frais",      items: ["Basilic frais (gros bouquet)", "Citron"] },
+    ],
+    5: [
+      { title: "Protéines",  items: ["Escalopes de dinde", "Cabillaud", "Œufs ×6", "Thon au naturel", "Tofu ferme"] },
+      { title: "Légumes",    items: ["Courgettes ×3", "Haricots verts (500 g)", "Mâche", "Courge butternut (½)", "Champignons", "Carottes"] },
+      { title: "Féculents",  items: ["Riz basmati", "Quinoa", "Patate douce"] },
+      { title: "Fruits",     items: ["Oranges ×4", "Ananas", "Fraises"] },
+      { title: "Laitiers",   items: ["Skyr nature", "Fromage blanc 0 %", "Yaourts nature"] },
     ],
   },
-  {
-    title: "Légumes (doux pour le ventre)",
-    note: "Choisis des légumes qui ne ballonnent pas. Brocolis, choux et chou-fleur volontairement écartés.",
-    items: [
-      "Courgettes ⭐",
-      "Carottes",
-      "Concombre",
-      "Tomates (cerises et grappes)",
-      "Poivrons rouges et jaunes",
-      "Aubergines",
-      "Haricots verts (frais ou surgelés)",
-      "Épinards frais (à cuire)",
-      "Mâche, roquette, laitue",
-      "Endives",
-      "Radis",
-      "Champignons de Paris",
-      "Courge butternut",
-    ],
-  },
-  {
-    title: "Féculents",
-    note: "Privilégie le riz basmati et le quinoa, plus digestes que les pâtes complètes ou les lentilles en grosse portion.",
-    items: [
-      "Riz basmati",
-      "Quinoa",
-      "Pâtes (semi-complètes ou blanches)",
-      "Patate douce",
-      "Pommes de terre à chair ferme",
-      "Vermicelles (pour bouillons)",
-    ],
-  },
-  {
-    title: "Fruits",
-    note: "Entiers, non cuits, non en jus. Pas de banane.",
-    items: [
-      "Fraises, framboises, myrtilles",
-      "Kiwis",
-      "Oranges, mandarines",
-      "Ananas (frais)",
-      "Pêches, nectarines",
-      "Raisin (en petites quantités)",
-      "Citrons (jaune et vert)",
-      "Pommes (en petite quantité, mieux tolérées cuites)",
-    ],
-  },
-  {
-    title: "Laitiers",
-    note: "Lis les étiquettes — skyr et fromage blanc 0% aromatisés doivent rester < 12 g de sucres / 100 g.",
-    items: [
-      "Skyr nature",
-      "Fromage blanc 0 % MG",
-      "Yaourts nature",
-      "Crème liquide à 4 %",
-      "Mozzarella di bufala",
-      "Feta",
-      "Chèvre frais",
-    ],
-  },
-  {
-    title: "Condiments & sauces",
-    note: "Pour tes sauces allégée et dragon.",
-    items: [
-      "Moutarde de Dijon",
-      "Vinaigre de cidre",
-      "Sauce soja",
-      "Pâte de sésame (tahini)",
-      "Levure maltée (en flocons)",
-      "Ail en poudre",
-      "Graines de chia",
-      "Huile d'olive (jours autorisés)",
-      "Bouillon (cubes ou en poudre, légumes / volaille)",
-      "Miso (pâte)",
-    ],
-  },
-  {
-    title: "Herbes & épices",
-    note: "Indispensables pour donner du goût sans matières grasses.",
-    items: [
-      "Ciboulette (fraîche ou surgelée)",
-      "Persil plat",
-      "Basilic",
-      "Coriandre",
-      "Aneth",
-      "Thym, romarin",
-      "Gingembre frais",
-      "Curry, cumin, paprika fumé",
-      "Sel, poivre, fleur de sel",
-    ],
-  },
-];
+  // Garde-manger : à acheter en une fois et à compléter quand c'est vide.
+  pantry: [
+    { title: "Sauces & condiments", items: ["Moutarde de Dijon", "Vinaigre de cidre", "Sauce soja", "Pâte de sésame (tahini)", "Levure maltée en flocons", "Ail en poudre", "Graines de chia", "Huile d'olive", "Bouillon (cubes légumes / volaille)", "Pâte miso"] },
+    { title: "Herbes & épices",     items: ["Ciboulette (surgelée OK)", "Persil plat", "Coriandre", "Aneth", "Thym, romarin", "Gingembre frais", "Curry, cumin, paprika", "Sel, poivre, fleur de sel"] },
+  ],
+};
 
 // Visual identity per meal type: photo (in /images) + fallback gradient.
 const TYPE_VISUAL = {
