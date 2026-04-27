@@ -31,6 +31,7 @@
       <button class="weektab" data-week="3">Semaine 3</button>
       <button class="weektab" data-week="4">Semaine 4</button>
       <button class="weektab" data-week="5">Semaine 5</button>
+      <button class="weektab weektab-rules" data-target="shopping">🛒 Courses</button>
       <button class="weektab weektab-rules" data-target="rules">Les règles</button>
       <button class="theme-toggle" id="theme-toggle" aria-label="Basculer thème clair/sombre" title="Thème clair / sombre">🌙</button>
     </div>
@@ -38,6 +39,20 @@
 
   <main>
     <section id="weeks" class="weeks"><!-- weeks injected here --></section>
+
+    <details id="shopping" class="rules shopping" open>
+      <summary>
+        <span class="rules-summary-title">🛒 Liste de courses</span>
+        <span class="rules-summary-hint">cliquer pour replier</span>
+      </summary>
+      <div class="rules-body">
+        <p class="rules-intro">Sélection pensée pour <strong>éviter les ballonnements</strong>&nbsp;: pas de brocolis, choux, ni chou-fleur. Coche au fur et à mesure&nbsp;— les choix restent enregistrés sur cet appareil.</p>
+        <div class="shopping-grid" id="shopping-grid"><!-- injected --></div>
+        <div class="shopping-actions">
+          <button id="shopping-reset" class="btn-ghost" type="button">Tout décocher</button>
+        </div>
+      </div>
+    </details>
 
     <details id="rules" class="rules">
       <summary>

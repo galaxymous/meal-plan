@@ -80,6 +80,42 @@ function renderRules() {
   fillSauce($("#sauce-dragon"), SAUCES.dragon, "dragon");
 }
 
+function renderShopping() {
+  const grid = $("#shopping-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  SHOPPING.forEach((cat, ci) => {
+    const card = document.createElement("article");
+    card.className = "shop-cat";
+    const title = document.createElement("h4");
+    title.textContent = cat.title;
+    card.appendChild(title);
+    if (cat.note) {
+      const note = document.createElement("p");
+      note.className = "shop-note";
+      note.textContent = cat.note;
+      card.appendChild(note);
+    }
+    const ul = document.createElement("ul");
+    ul.className = "shop-list";
+    cat.items.forEach((item, ii) => {
+      const key = `shop:${ci}:${ii}`;
+      const checked = localStorage.getItem(key) === "1";
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <label class="shop-row${checked ? " is-checked" : ""}">
+          <input type="checkbox" data-shopkey="${key}" ${checked ? "checked" : ""} />
+          <span class="shop-tick"></span>
+          <span class="shop-text"></span>
+        </label>`;
+      li.querySelector(".shop-text").textContent = item;
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+    grid.appendChild(card);
+  });
+}
+
 function renderMeal(label, meal, dateIso, slot) {
   const div = document.createElement("div");
   div.className = "meal";
@@ -182,8 +218,14 @@ function setupWeekNav() {
   $$(".weektab[data-week]").forEach(btn => {
     btn.addEventListener("click", () => setActiveWeek(btn.dataset.week));
   });
-  $(".weektab-rules").addEventListener("click", () => {
-    $("#rules").scrollIntoView({ behavior: "smooth", block: "start" });
+  $$(".weektab-rules").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.target;
+      const el = target ? document.getElementById(target) : null;
+      if (!el) return;
+      if (el.tagName === "DETAILS") el.open = true;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
 }
 
@@ -241,12 +283,32 @@ function setupModal() {
 // ----- checkboxes -----
 function setupChecks() {
   document.addEventListener("change", (e) => {
-    const cb = e.target.closest("input[type=checkbox][data-checkkey]");
-    if (!cb) return;
-    const key = cb.dataset.checkkey;
-    if (cb.checked) localStorage.setItem(key, "1");
-    else localStorage.removeItem(key);
-    cb.closest(".meal").classList.toggle("is-done", cb.checked);
+    const meal = e.target.closest("input[type=checkbox][data-checkkey]");
+    if (meal) {
+      const key = meal.dataset.checkkey;
+      if (meal.checked) localStorage.setItem(key, "1");
+      else localStorage.removeItem(key);
+      meal.closest(".meal").classList.toggle("is-done", meal.checked);
+      return;
+    }
+    const shop = e.target.closest("input[type=checkbox][data-shopkey]");
+    if (shop) {
+      const key = shop.dataset.shopkey;
+      if (shop.checked) localStorage.setItem(key, "1");
+      else localStorage.removeItem(key);
+      shop.closest(".shop-row").classList.toggle("is-checked", shop.checked);
+    }
+  });
+
+  const reset = $("#shopping-reset");
+  if (reset) reset.addEventListener("click", () => {
+    Object.keys(localStorage)
+      .filter(k => k.startsWith("shop:"))
+      .forEach(k => localStorage.removeItem(k));
+    $$("#shopping-grid input[type=checkbox]").forEach(cb => {
+      cb.checked = false;
+      cb.closest(".shop-row").classList.remove("is-checked");
+    });
   });
 }
 
@@ -283,6 +345,7 @@ function pickInitialWeek() {
 document.addEventListener("DOMContentLoaded", () => {
   setupTheme();
   renderRules();
+  renderShopping();
   renderWeeks();
   setupWeekNav();
   setupModal();

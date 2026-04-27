@@ -206,6 +206,117 @@ const SAUCES = {
   },
 };
 
+// Liste de courses — pensée anti-ballonnement.
+// Évite : brocolis, choux, chou-fleur, oignons crus, légumineuses en grande quantité,
+// poireaux crus, asperges, artichauts. Pas de banane (selon le menu).
+const SHOPPING = [
+  {
+    title: "Protéines maigres",
+    note: "Varie chaque semaine pour ne pas se lasser.",
+    items: [
+      "Filets de poulet",
+      "Escalopes de dinde",
+      "Jambon de volaille (tranches)",
+      "Steak haché 5 % MG",
+      "Œufs (boîte de 12)",
+      "Cabillaud / lieu noir / colin (frais ou surgelé)",
+      "Darnes de saumon",
+      "Thon au naturel (boîtes)",
+      "Crevettes décortiquées",
+      "Tofu nature ferme",
+    ],
+  },
+  {
+    title: "Légumes (doux pour le ventre)",
+    note: "Choisis des légumes qui ne ballonnent pas. Brocolis, choux et chou-fleur volontairement écartés.",
+    items: [
+      "Courgettes ⭐",
+      "Carottes",
+      "Concombre",
+      "Tomates (cerises et grappes)",
+      "Poivrons rouges et jaunes",
+      "Aubergines",
+      "Haricots verts (frais ou surgelés)",
+      "Épinards frais (à cuire)",
+      "Mâche, roquette, laitue",
+      "Endives",
+      "Radis",
+      "Champignons de Paris",
+      "Courge butternut",
+    ],
+  },
+  {
+    title: "Féculents",
+    note: "Privilégie le riz basmati et le quinoa, plus digestes que les pâtes complètes ou les lentilles en grosse portion.",
+    items: [
+      "Riz basmati",
+      "Quinoa",
+      "Pâtes (semi-complètes ou blanches)",
+      "Patate douce",
+      "Pommes de terre à chair ferme",
+      "Vermicelles (pour bouillons)",
+    ],
+  },
+  {
+    title: "Fruits",
+    note: "Entiers, non cuits, non en jus. Pas de banane.",
+    items: [
+      "Fraises, framboises, myrtilles",
+      "Kiwis",
+      "Oranges, mandarines",
+      "Ananas (frais)",
+      "Pêches, nectarines",
+      "Raisin (en petites quantités)",
+      "Citrons (jaune et vert)",
+      "Pommes (en petite quantité, mieux tolérées cuites)",
+    ],
+  },
+  {
+    title: "Laitiers",
+    note: "Lis les étiquettes — skyr et fromage blanc 0% aromatisés doivent rester < 12 g de sucres / 100 g.",
+    items: [
+      "Skyr nature",
+      "Fromage blanc 0 % MG",
+      "Yaourts nature",
+      "Crème liquide à 4 %",
+      "Mozzarella di bufala",
+      "Feta",
+      "Chèvre frais",
+    ],
+  },
+  {
+    title: "Condiments & sauces",
+    note: "Pour tes sauces allégée et dragon.",
+    items: [
+      "Moutarde de Dijon",
+      "Vinaigre de cidre",
+      "Sauce soja",
+      "Pâte de sésame (tahini)",
+      "Levure maltée (en flocons)",
+      "Ail en poudre",
+      "Graines de chia",
+      "Huile d'olive (jours autorisés)",
+      "Bouillon (cubes ou en poudre, légumes / volaille)",
+      "Miso (pâte)",
+    ],
+  },
+  {
+    title: "Herbes & épices",
+    note: "Indispensables pour donner du goût sans matières grasses.",
+    items: [
+      "Ciboulette (fraîche ou surgelée)",
+      "Persil plat",
+      "Basilic",
+      "Coriandre",
+      "Aneth",
+      "Thym, romarin",
+      "Gingembre frais",
+      "Curry, cumin, paprika fumé",
+      "Sel, poivre, fleur de sel",
+    ],
+  },
+];
+
 // Visual identity per meal type: photo (in /images) + fallback gradient.
 const TYPE_VISUAL = {
   "feculents-proteine": { image: "images/feculents-proteine.jpg", gradient: "linear-gradient(135deg, #f9d976 0%, #f39c6b 100%)" },
